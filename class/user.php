@@ -16,13 +16,9 @@ class User {
     public function insertUser($nom, $prenom, $password, $email, $poste) {
         try {
 
-            // Clean and assign values with validateAndAssignValue() function
-
-            $nom_ok = $this->validateAndAssignValue($nom);
-            $prenom_ok = $this->validateAndAssignValue($prenom);
+            // We make hash to the password
             $password_ok = password_hash($this->validateAndAssignValue($password), PASSWORD_DEFAULT);
-            $email_ok = $this->validateAndAssignEmail($email);
-            $poste_ok = $this->validateAndAssignValue($poste);
+            
 
             // Preparar la consulta SQL para insertar un nuevo usuario
             $query = "INSERT INTO `utilisateurs` (`nom`, `prenom`, `password`, `email`, `poste`)
@@ -31,11 +27,11 @@ class User {
             $statement = $this->db->prepare($query);
 
             // Asignar los valores a los parámetros de la query
-            $statement->bindParam(':nom', $nom_ok, PDO::PARAM_STR);
-            $statement->bindParam(':prenom', $prenom_ok, PDO::PARAM_STR);
+            $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
             $statement->bindParam(':password', $password_ok, PDO::PARAM_STR);
-            $statement->bindParam(':email', $email_ok, PDO::PARAM_STR);
-            $statement->bindParam(':poste', $poste_ok, PDO::PARAM_STR);
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            $statement->bindParam(':poste', $poste, PDO::PARAM_STR);
 
             // Ejecutar la query
             $statement->execute();

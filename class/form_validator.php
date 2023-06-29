@@ -22,7 +22,7 @@ class Form_Validator {
         $this -> poste = $poste;
 
         $this -> error_nom = $this -> is_nom_variable_correct($nom);
-        $this -> error_prenom = $this -> is_nom_variable_correct($prenom);
+        $this -> error_prenom = $this -> is_prenom_variable_correct($prenom);
         $this -> error_email = $this -> is_email_variable_correct($email);
         $this -> error_password = $this -> is_password_variable_correct($password);
         $this -> error_poste = $this -> is_poste_variable_correct($poste);
@@ -60,6 +60,24 @@ class Form_Validator {
 
 
     /**
+     * Check if the 'nom' variable is correct.
+     *
+     * @param string $nom The value of the 'nom' variable.
+     * @return string|null The error message or null if the 'nom' is correct.
+     */
+    
+    private function is_prenom_variable_correct($prenom){
+    if (!$this->variable_not_empty($prenom)){
+        return "Vous devez écrire le prenom de l'employé.";
+    } elseif (strlen($prenom) > 50) {
+        return "Le prenom de l'employé doit contenir moins de 50 caractères.";
+    }
+
+    return null; // 'nom' is correct
+    }
+
+
+    /**
      * Check if the 'email' variable is correct.
      *
      * @param string $email The value of the 'email' variable.
@@ -87,14 +105,14 @@ class Form_Validator {
 
     private function is_password_variable_correct($password) {
         // Define the password validation rules with a regex
-        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/';
+        $pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\s]).*$/';
 
         if (!$this->variable_not_empty($password)){
             return "Vous devez écrire le mot de passe de l'employé.";
         } elseif (strlen($password) < 8){
-            return "Le mot de passe est trop court.";
+            return "Le mot de passe doit comporter plus de 8 caractères.";
         } elseif (!preg_match($pattern, $password)) {
-            return "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre.";
+            return "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial .";
         }
 
         return null; // 'password' is correct
@@ -164,4 +182,13 @@ class Form_Validator {
     public function get_poste_error() {
         return $this -> error_poste;
     }
+
+
+    public function is_form_valid() {
+        if ($this -> error_nom == null && $this -> error_prenom == null && $this -> error_email == null && $this -> error_password  == null && $this -> error_poste  == null){
+            return true;
+        }else{
+            return false;
+        }
+    } 
 }

@@ -25,7 +25,10 @@
         });
 
     };
-      console.log(data)
+    if (data.includes("Duplicate entry")){
+      document.getElementById("resultado").innerHTML = "L'e-mail est déjà utilisé, veuillez en essayer un autre.";
+    }
+    console.log(data.nom_error)
       
     } catch (error) {
       document.getElementById("resultado").innerHTML = "An error occurred, please look the console logs";
