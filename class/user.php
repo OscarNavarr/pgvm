@@ -41,8 +41,8 @@ class User {
             $statement->execute();
 
             //IF ALL IS OK
-            return true;
-            
+            echo "New user was added successfully";
+
         } catch (PDOException $e) {
             die ("Error al insertar usuario: " . $e->getMessage());
         }

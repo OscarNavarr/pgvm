@@ -3,22 +3,33 @@
  * THIS CODE ALLOWS OBTAINING THE FORM DATA WITHOUT THE NEED TO RELOAD THE PAGE
  * 
  */
-
-function sendForm() {
-    var formulario = document.getElementById("register_user_form");
-    var datos = new FormData(formulario);
+  const sendForm = async() => {
+    try {
+      const formulario = document.getElementById("register_user_form");
+      const datos = new FormData(formulario);
   
-    fetch("../form_actions/register_user/register_user.php", {
-      method: "POST",
-      body: datos
-    })
-    .then(response => response.text())
-    .then(data => {
-      //MOSTRAR QUE TODO FUE OK
-      document.getElementById("resultado").innerHTML = data;
-    })
-    .catch(error => {
+      const response = await fetch("../form_actions/register_user/register_user.php", {
+        method: "POST",
+        body: datos
+      });
+  
+      const data = await response.text();
+      
+      if (data === "New user was added successfully"){
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: data,
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+    };
+      console.log(data)
+      
+    } catch (error) {
+      document.getElementById("resultado").innerHTML = "An error occurred, please look the console logs";
       console.log(error);
-    });
+    }
   }
   

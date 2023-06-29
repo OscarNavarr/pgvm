@@ -1,4 +1,9 @@
-<form id="register_user_form" class="max-w-[27rem] mx-auto mt-[6rem] p-8">
+
+<div class="mt-[6rem] max-w-[27rem] mx-auto">
+    <h3 class="text-center text-[2.3rem] text-slate-400">Créer un utilisateur</h3>
+    <hr>
+</div>
+<form id="register_user_form" class="max-w-[27rem] mx-auto mt-[2rem] p-8">
 
     <div class="md:flex md:justify-between">
         <label for="nom">Nom:</label>
