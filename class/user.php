@@ -37,10 +37,10 @@ class User {
             $statement->execute();
 
             //IF ALL IS OK
-            echo "New user was added successfully";
+            echo json_encode("New user was added successfully");
 
         } catch (PDOException $e) {
-            die ("Error al insertar usuario: " . $e->getMessage());
+            echo json_encode("Error al insertar usuario: " . $e->getMessage());
         }
     }
 
@@ -69,7 +69,7 @@ class User {
             return $users;
             
         } catch (PDOException $e) {
-            echo "Error to get all users: " . $e->getMessage();
+            echo json_encode("Error to get all users: " . $e->getMessage());
         }
     }
 
@@ -108,7 +108,7 @@ class User {
             }
 
         } catch (PDOException $e) {
-            echo "Error to check if the email exist in the database: " . $e->getMessage();
+            echo json_encode("Error to check if the email exist in the database: " . $e->getMessage());
         }
     }
 

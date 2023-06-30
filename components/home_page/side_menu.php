@@ -5,7 +5,7 @@
     //WE GET THE ACTION FROM THE URL
     $action = $_GET["action"];
 ?>
-<section class="h-full w-[3.5rem] bg-[#00aaff]">
+<section class="w-[3.5rem] bg-[#00aaff]">
     
     <div class="w-[2.5rem] mx-auto pt-[4rem]">
        

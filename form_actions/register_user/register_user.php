@@ -1,7 +1,8 @@
 <?php
 
 if(!empty($_POST)){
-   
+    header('Content-Type: application/json');
+
         try{
 
            //IMPORT THE CLASS USER
@@ -27,15 +28,10 @@ if(!empty($_POST)){
             }else{
 
                 //IF THE FORM IS NOT OK THEN WE SHOW THE ERRORS 
-                $errors = array(
-                    "nom_error" => $validator->get_nom_error(),
-                    "prenom_error" => $validator->get_prenom_error(),
-                    "email_error" => $validator->get_email_error(),
-                    "password_error" => $validator->get_password_error(),
-                    "poste_error" => $validator->get_poste_error(),
-                );
-                $erros_json = json_encode($errors);
-                echo $erros_json;
+
+                    $errors = [$validator->get_nom_error(), $validator->get_prenom_error(),$validator->get_email_error(), $validator->get_password_error(), $validator->get_poste_error()];
+
+                    echo json_encode($errors);
             }
            
        }catch(Exception $e){
