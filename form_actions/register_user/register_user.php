@@ -5,7 +5,7 @@ if(!empty($_POST)){
 
         try{
 
-           //IMPORT THE CLASS USER
+           //IMPORT THE USER CLASS
            require_once "../../class/user.php";
 
            //IMPORT THE CLASS FORM VALIDATOR

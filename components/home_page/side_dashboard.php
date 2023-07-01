@@ -19,6 +19,11 @@
         include_once "../components/home_page/side_dashboard/create_employee_account.php";
     ?>
 
-    <?php endif; ?>
+    <?php 
+        //SHOW CREATE USER COMPONENT IF THE ACTION IS NOT NULL
 
+        elseif( $action === "create-date")  :
+            include_once "../components/home_page/side_dashboard/create_medical_appointment.php";
+        endif;
+    ?>
 </section>

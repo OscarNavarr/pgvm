@@ -123,7 +123,7 @@ const sendForm = async () => {
     };
   } catch (e) {
     // Display a general error message if an exception occurs
-    document.getElementById("resultado").innerHTML = "Une erreur s'est produite, veuillez vérifier les journaux de la console.";
+    document.getElementById("error_result").innerHTML = "Une erreur s'est produite, veuillez vérifier les journaux de la console.";
     console.log(e);
   }
 }

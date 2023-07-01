@@ -19,28 +19,27 @@ class User {
             // We make hash to the password
             $password_ok = password_hash($this->validateAndAssignValue($password), PASSWORD_DEFAULT);
             
-
-            // Preparar la consulta SQL para insertar un nuevo usuario
+            //CREATE THE SQL QUERY TO ADD A NEW USER
             $query = "INSERT INTO `utilisateurs` (`nom`, `prenom`, `password`, `email`, `poste`)
                          VALUES (:nom, :prenom, :password, :email, :poste)";
 
             $statement = $this->db->prepare($query);
 
-            // Asignar los valores a los parámetros de la query
+            // ASSIGN VALUES TO PARAMETERS
             $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
             $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
             $statement->bindParam(':password', $password_ok, PDO::PARAM_STR);
             $statement->bindParam(':email', $email, PDO::PARAM_STR);
             $statement->bindParam(':poste', $poste, PDO::PARAM_STR);
 
-            // Ejecutar la query
+            // EXECUTE THE QUERY
             $statement->execute();
 
             //IF ALL IS OK
             echo json_encode("New user was added successfully");
 
         } catch (PDOException $e) {
-            echo json_encode("Error al insertar usuario: " . $e->getMessage());
+            echo json_encode("Erreur lors de l'insertion de l'utilisateur: " . $e->getMessage());
         }
     }
 

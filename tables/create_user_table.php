@@ -1,10 +1,10 @@
 <?php
-// Importar el archivo de conexión
+// IMPORT CONNECTION 
 require_once '../connection/db_connect.php';
 
 try {
     if ($db) {
-        // Definir la consulta para crear la tabla con campo 'poste' y campo 'email' único
+        // DEFINING THE QUERY TO CREATE THE TABLE
         $query = "CREATE TABLE IF NOT EXISTS `utilisateurs` (
                     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                     `nom` VARCHAR(50) NOT NULL,
@@ -14,15 +14,15 @@ try {
                     `poste` VARCHAR(50) NOT NULL
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 
-        // Ejecutar la consulta para crear la tabla
+        // EXECUTE QUERY TO CREATE TABLE
         $db->exec($query);
 
-        echo "La tabla 'usuarios' se ha creado correctamente.";
+        echo "La table 'utilisateurs' a été créée avec succès.";
 
-        // Cerrar la conexión
+        // CLOSE THE CONNECTION
         $db = null;
     }
 } catch (PDOException $e) {
-    echo "Error al crear la tabla: " . $e->getMessage();
+    echo "Erreur de création de table: " . $e->getMessage();
 }
 ?>
