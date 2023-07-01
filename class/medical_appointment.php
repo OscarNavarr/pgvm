@@ -23,7 +23,7 @@ class Medical_Appointment {
     public function create_medical_appointment($appointment_date, $appointment_hour,$user_id){
         try{
             //CREATE THE SQL QUERY TO ADD A NEW MEDICAL APPOINTMENT
-            $query = "INSERT INTO `rendez-vous` (`appointment_date`, `appointment_hour`, `user_id`) VALUES (:appointment_date, :appointment_hour, :user_id)";
+            $query = "INSERT INTO `rendez_vous` (`appointment_date`, `appointment_hour`, `user_id`) VALUES (:appointment_date, :appointment_hour, :user_id)";
 
             $statement = $this->db->prepare($query);
 
