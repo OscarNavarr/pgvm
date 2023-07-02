@@ -1,5 +1,5 @@
 <?php
-    // Datos de conexión a la base de datos remota
+    // Connection data to the remote database
     /* $hostname = 'db5013529946.hosting-data.io';
     $port = '3306';
     $database = 'dbs11336335';
@@ -7,14 +7,14 @@
     $password = '#P$TWi9bt8XMb8';
     */
 
-    // Datos de conexión a la base de datos local
+    // Connection data to the local database
 
     define("DBHOST", "localhost");
     define("DBUSER", "root");
     define("DBPASSWORD", "");
     define("DBNAME", "pgvm");
     
-    // Crear una nueva instancia de PDO remote
+    // Create a new instance of PDO remote
     //$dsn = "mysql:host=$hostname;port=$port;dbname=$database";
 
     //CREATE DSN LOCALE
@@ -28,7 +28,7 @@
 
         $db->exec("SET NAMES utf8");
 
-        // Configurar el modo de error para lanzar excepciones en caso de error
+        // Configure error mode to throw exceptions on error
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 

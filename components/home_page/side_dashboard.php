@@ -3,27 +3,27 @@
     $action = $_GET["action"];
 ?>
 
-<section class="w-full <?php echo(empty($action)) ? "flex justify-center" : ""  ?>">
+<section class="w-full">
     
     <?php
-        //VALIDATE IF THE ACTION IS NULL
-        if (empty($action)):
-    ?>
-        <div class=" h-full flex justify-center items-center ">
-            <h3 class="text-slate-300 text-[1.4rem] w-[80%] text-justify md:text-center ">Veuillez sélectionner une option dans le menu de gauche.</h3>
-        </div>
 
-    <?php elseif ($action === "create-user"): 
-     
-     //SHOW CREATE USER COMPONENT IF THE ACTION IS NOT NULL
-        include_once "../components/home_page/side_dashboard/create_employee_account.php";
-    ?>
+        switch($action){
+            
+            case "create-user":
+                //SHOW CREATE USER COMPONENT
+                include_once "../components/home_page/side_dashboard/create_employee_account.php";
+            break;
 
-    <?php 
-        //SHOW CREATE USER COMPONENT IF THE ACTION IS NOT NULL
+            case "create-date":
+                //SHOW CREATE MEDICAL APPOINTEMENT COMPONENT I
+                include_once "../components/home_page/side_dashboard/create_medical_appointment.php";
+            break;
 
-        elseif( $action === "create-date")  :
-            include_once "../components/home_page/side_dashboard/create_medical_appointment.php";
-        endif;
+            default:
+                //SHOW DASHBOARD COMPONENT 
+                include_once "../components/home_page/side_dashboard/dashboard.php";
+            break;
+        }
+
     ?>
 </section>
