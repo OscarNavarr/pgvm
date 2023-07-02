@@ -15,7 +15,7 @@
 
     ?>
 
-    <div class="flex h-screen">
+    <div class="flex min-h-screen">
         
         <?php
             //IMPORT SIDE MENU FROM COMPONENTS FOLDER

@@ -51,11 +51,11 @@ class User {
     */
 
 
-    public function getAlltUser() {
+    public function getAlltEmployees() {
         try {
 
             // Preparar la consulta SQL para insertar un nuevo usuario
-            $query = "SELECT * FROM `utilisateurs`";
+            $query = "SELECT * FROM `utilisateurs` WHERE `poste` = 'employé'";
             
             $statement = $this->db->prepare($query);
 

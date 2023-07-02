@@ -15,8 +15,6 @@ const send_register_appointment_form = async () => {
         // Parse the response as JSON
         const data = await response.json();
 
-        console.log(data);
-
         /**
          * 
          * IF EVERYTHING IS OK AND THERE WAS NO ERROR
