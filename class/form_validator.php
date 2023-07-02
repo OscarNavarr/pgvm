@@ -50,9 +50,9 @@ class Form_Validator {
     
     private function is_nom_variable_correct($nom){
     if (!$this->variable_not_empty($nom)){
-        return "Vous devez écrire le nom de l'employé.";
+        return "Vous devez écrire le nom.";
     } elseif (strlen($nom) > 50) {
-        return "Le nom de l'employé doit contenir moins de 50 caractères.";
+        return "Le nom d doit contenir moins de 50 caractères.";
     }
 
     return null; // 'nom' is correct
@@ -68,9 +68,9 @@ class Form_Validator {
     
     private function is_prenom_variable_correct($prenom){
     if (!$this->variable_not_empty($prenom)){
-        return "Vous devez écrire le prenom de l'employé.";
+        return "Vous devez écrire le prenom.";
     } elseif (strlen($prenom) > 50) {
-        return "Le prenom de l'employé doit contenir moins de 50 caractères.";
+        return "Le prenom doit contenir moins de 50 caractères.";
     }
 
     return null; // 'nom' is correct
@@ -87,7 +87,7 @@ class Form_Validator {
 
     private function is_email_variable_correct($email) {
         if (!$this->variable_not_empty($email)){
-            return "Vous devez écrire l'email de l'employé.";
+            return "Vous devez écrire l'email.";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
             return "Le format de l'e-mail n'est pas valide, veuillez écrire l'e-mail correctement.";
         }
@@ -108,7 +108,7 @@ class Form_Validator {
         $pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\s]).*$/';
 
         if (!$this->variable_not_empty($password)){
-            return "Vous devez écrire le mot de passe de l'employé.";
+            return "Vous devez écrire le mot de passe .";
         } elseif (strlen($password) < 8){
             return "Le mot de passe doit comporter plus de 8 caractères.";
         } elseif (!preg_match($pattern, $password)) {
@@ -128,7 +128,7 @@ class Form_Validator {
     
     private function is_poste_variable_correct($poste){
         if (!$this->variable_not_empty($poste)){
-            return "Vous devez écrire le poste de l'employé.";
+            return "Vous devez écrire le poste .";
         }
 
         return null; // 'poste' is correct

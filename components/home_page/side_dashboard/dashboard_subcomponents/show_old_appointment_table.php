@@ -34,13 +34,13 @@ include_once "../connection/db_connect.php";
         <?php foreach($olds_appointments as $old_appointment): ?>
 
             <tr class="border-slate-300 border-[0.15rem] h-[3rem]" >
-              <td class="border-r-slate-300 border-r-[0.15rem] px-2"><p><?= $old_appointment["nom"] ?></p></td>
-              <td class="border-r-slate-300 border-r-[0.15rem] px-2"><p><?= $old_appointment["prenom"] ?></p></td>
-              <td class="border-r-slate-300 border-r-[0.15rem] px-2">
+              <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?= $old_appointment["nom"] ?></p></td>
+              <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?= $old_appointment["prenom"] ?></p></td>
+              <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center">
                 <a href="mailto:<?= $old_appointment["email"] ?>"><?= $old_appointment["email"] ?></a>
               </td>
-              <td class="border-r-slate-300 border-r-[0.15rem] px-4"><p><?= $old_appointment["appointment_date"] ?></p></td>
-              <td class="border-r-slate-300 border-r-[0.15rem] px-4"><p><?= $old_appointment["appointment_hour"] ?></p></td>
+              <td class="border-r-slate-300 border-r-[0.15rem] px-4 text-center"><p><?= $old_appointment["appointment_date"] ?></p></td>
+              <td class="border-r-slate-300 border-r-[0.15rem] px-4 text-center"><p><?= strstr($old_appointment["appointment_hour"], ":00.", true) ?></p></td>
             </tr>
             
         <?php endforeach; ?>
