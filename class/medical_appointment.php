@@ -76,6 +76,39 @@ class Medical_Appointment {
         }
     }
 
+
+    /*
+    * 
+    *THIS FUNCTION ALLOW TO GET ALL THE OLD MEDICAL APPOINTMENT BY EMAIL FROM THE DATABASE
+    *
+    */
+
+    public function get_old_medical_appointment_by_email($appointment_date, $email){
+        try{
+            //CREATE THE SQL QUERY TO ADD A NEW MEDICAL APPOINTMENT
+            $query = "SELECT utilisateurs.nom, utilisateurs.prenom, utilisateurs.email, rendez_vous.appointment_date, rendez_vous.appointment_hour FROM `rendez_vous` JOIN `utilisateurs` ON utilisateurs.id = rendez_vous.user_id WHERE rendez_vous.appointment_date <= :appointment_date AND utilisateurs.email = :email";
+
+            $statement = $this->db->prepare($query);
+
+            // ASSIGN VALUES TO PARAMETERS
+            $statement->bindParam(':appointment_date', $appointment_date);
+            $statement->bindParam(':email', $email);
+
+
+            //EXECUTE THE QUERY
+            $statement->execute();
+
+             //FETCH ALL DATA
+             $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+             return $appointments;
+            
+
+        } catch (PDOException $e){
+            echo json_encode("Erreur lors de l'obtention des rendez-vous médicaux: ".$e->getMessage());
+        }
+    }
+
     /*
     * 
     * THIS FUNCTION ALLOWS TO OBTAIN ALL FUTURE MEDICAL APPOINTMENTS FROM THE DATABASE
@@ -91,6 +124,39 @@ class Medical_Appointment {
 
             // ASSIGN VALUES TO PARAMETERS
             $statement->bindParam(':appointment_date', $appointment_date);
+
+
+            //EXECUTE THE QUERY
+            $statement->execute();
+
+             //FETCH ALL DATA
+             $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+             return $appointments;
+            
+
+        } catch (PDOException $e){
+            echo json_encode("Erreur lors de l'obtention des rendez-vous médicaux: ".$e->getMessage());
+        }
+    }
+
+
+    /*
+    * 
+    * THIS FUNCTION ALLOWS TO OBTAIN ALL FUTURE MEDICAL APPOINTMENTS BY EMAIL FROM THE DATABASE
+    *
+    */
+
+    public function get_future_medical_appointment_by_email($appointment_date, $email){
+        try{
+            //CREATE THE SQL QUERY TO ADD A NEW MEDICAL APPOINTMENT
+            $query = "SELECT utilisateurs.nom, utilisateurs.prenom, utilisateurs.email, rendez_vous.appointment_date, rendez_vous.appointment_hour FROM `rendez_vous` JOIN `utilisateurs` ON utilisateurs.id = rendez_vous.user_id WHERE rendez_vous.appointment_date >= :appointment_date AND utilisateurs.email = :email";
+
+            $statement = $this->db->prepare($query);
+
+            // ASSIGN VALUES TO PARAMETERS
+            $statement->bindParam(':appointment_date', $appointment_date);
+            $statement->bindParam(':email', $email);
 
 
             //EXECUTE THE QUERY

@@ -52,7 +52,7 @@ class Form_Validator {
     if (!$this->variable_not_empty($nom)){
         return "Vous devez écrire le nom.";
     } elseif (strlen($nom) > 50) {
-        return "Le nom d doit contenir moins de 50 caractères.";
+        return "Le nom doit contenir moins de 50 caractères.";
     }
 
     return null; // 'nom' is correct

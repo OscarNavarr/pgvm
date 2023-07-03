@@ -12,7 +12,7 @@
   //GET ALL USER IN THE DATABASE
   $all_employees = $user->getAlltEmployees();
 
-  
+  if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"):
 ?>
 <div class="md:flex md:justify-center my-[3rem] mb-[3rem] w-[20rem] min-h-[8rem] md:w-auto overflow-x-auto mx-auto">
     <input type="hidden" id="save_info" value="">
@@ -42,3 +42,5 @@
     </table>
 
 </div>
+
+<?php endif; ?>

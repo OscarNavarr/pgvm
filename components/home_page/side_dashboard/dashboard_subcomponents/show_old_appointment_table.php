@@ -13,13 +13,18 @@ include_once "../connection/db_connect.php";
  //CREATE NEW MEDICAL APPOINTMENT INSTANCE
  $medical_appointment = new Medical_Appointment($db);
 
- //GET THE OLDS MEDICALS APPOINTMENTS
- $olds_appointments = $medical_appointment->get_old_medical_appointment($server_date);
-
+ if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"){
+     
+    //GET THE OLDS MEDICALS APPOINTMENTS
+    $olds_appointments = $medical_appointment->get_old_medical_appointment($server_date);
+ }else{
+    $olds_appointments = $medical_appointment->get_old_medical_appointment_by_email($server_date, $_SESSION["user"]["email"]);
+ }
+ if(!empty($olds_appointments)):  
 ?>
 
 <div class="md:flex md:justify-center my-[3rem] mb-[3rem] w-[20rem] min-h-[8rem] md:w-auto overflow-x-auto mx-auto">
-    <input type="hidden" id="save_info" value="">
+    
     <table class="table-auto border-slate-300 border-[0.15rem] rounded-md ">
       <thead class="border-slate-300 border-[0.15rem] rounded-md h-[3rem] bg-[#89D8FF]">
         <tr>
@@ -48,3 +53,4 @@ include_once "../connection/db_connect.php";
     </table>
 
 </div>
+<?php endif; ?>

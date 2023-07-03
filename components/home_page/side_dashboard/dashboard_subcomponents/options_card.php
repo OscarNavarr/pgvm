@@ -34,16 +34,29 @@ $user = new User($db);
  //CREATE NEW MEDICAL APPOINTMENT INSTANCE
  $medical_appointment = new Medical_Appointment($db);
 
- //GET THE OLDS MEDICALS APPOINTMENTS
- $olds_appointments = $medical_appointment->get_old_medical_appointment($server_date);
+ if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"){
+     
+     //GET THE OLDS MEDICALS APPOINTMENTS
+     $olds_appointments = $medical_appointment->get_old_medical_appointment($server_date);
+}else{
+     $olds_appointments = $medical_appointment->get_old_medical_appointment_by_email($server_date, $_SESSION["user"]["email"]);
+}
 
- //GET ALL THE FUTURE MEDICALS APPOINTMENTS
- $future_appointments = $medical_appointment->get_future_medical_appointment($server_date);
+if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"){
+
+    //GET ALL THE FUTURE MEDICALS APPOINTMENTS
+    $future_appointments = $medical_appointment->get_future_medical_appointment($server_date);
+}else{
+
+    $future_appointments = $medical_appointment->get_future_medical_appointment_by_email($server_date, $_SESSION["user"]["email"]);
+}
  
 ?>
 
 <div id="section_cards" class="w-full max-w-[50rem] min-h-[5rem] md:flex md:justify-around md:mx-auto">
-        
+        <?php 
+            if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"):
+        ?>
         <!-- CARD ONE -->
         <div id="card_one" class="bg-[#00bfff] w-[13rem] mx-auto mt-3 py-2 rounded-md">
             <div id="header">
@@ -54,7 +67,9 @@ $user = new User($db);
                 <a href="<?php echo(!isset($action)) ? $url : clean_url($url)?>" class="bg-[#00aaff] hover:border-white hover:border-[0.1rem] text-white w-[8rem] h-[2.5rem]  rounded-lg text-center py-2">Regarder</a>
             </div>
         </div>
-       
+       <?php
+        endif;
+       ?>
         <!-- CARD TWO -->
         <div id="card_one" class="bg-[#00bfff] w-[13rem] mx-auto mt-3 py-2 rounded-md">
             <div id="header">

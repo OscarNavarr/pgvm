@@ -19,7 +19,7 @@ const hideErrorMessage = (elementId) => {
 };
 
 // Function to handle form submission
-const sendForm = async (url_post) => {
+const sendForm = async () => {
 
   try {
     // Array of fields to check for errors
@@ -30,7 +30,7 @@ const sendForm = async (url_post) => {
     const datos = new FormData(formulario);
 
     // Send a POST request to the server
-    const response = await fetch(url_post ? url_post : "../form_actions/register_user/register_user.php", {
+    const response = await fetch("../form_actions/register_user/register_user.php", {
       method: "POST",
       body: datos
     });
@@ -38,7 +38,6 @@ const sendForm = async (url_post) => {
     // Parse the response as JSON
     const data = await response.json();
   
-    console.log(data);
     /**
      * 
      * IF EVERYTHING IS OK AND THERE WAS NO ERROR
@@ -124,7 +123,7 @@ const sendForm = async (url_post) => {
   } catch (e) {
     // Display a general error message if an exception occurs
     document.getElementById("error_result").innerHTML = "Une erreur s'est produite, veuillez vérifier les journaux de la console.";
-    console.log(e);
+    console.log(e.message);
   }
 }
 

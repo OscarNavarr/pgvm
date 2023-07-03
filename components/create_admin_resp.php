@@ -59,7 +59,7 @@
         </div>
 
         <div class="flex justify-center mt-5">
-            <button type="button" onclick="sendForm('./register_user.php')" class="bg-blue-300 hover:bg-blue-400 h-[3rem] w-[10rem] rounded-lg text-white">
+            <button type="button" onclick="sendForm()" class="bg-blue-300 hover:bg-blue-400 h-[3rem] w-[10rem] rounded-lg text-white">
                 Créer un utilisateur
             </button>
         </div>
@@ -67,7 +67,7 @@
     </form>
     <div id="error_result"></div>
 
-    <script type="text/javascript" src="../form_actions/register_user/register_user.js" ></script>
+   
 
 <?php
     include_once "./footer.php"
