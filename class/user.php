@@ -141,7 +141,6 @@ class User {
         
        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             die ("Invalid email, please whrite the an correct email address");
-            exit();
        }else{
 
            $email_ok = $this->validateAndAssignValue($email);
