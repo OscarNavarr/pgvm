@@ -75,7 +75,7 @@ class User {
 
     /*
     * 
-    *THIS FUNCTION CHECK IF THE USER EXISTS BY HIS EMAIL IN THE DATABASE
+    *THIS FUNCTION CHECK IF THE USER EXISTS BY HIS EMAIL IN THE DATABASE AND RETURN THE USER
     *
     */
 
@@ -107,7 +107,42 @@ class User {
             }
 
         } catch (PDOException $e) {
-            echo json_encode("Error to check if the email exist in the database: " . $e->getMessage());
+            echo json_encode("Error to check if the user exist in the database by his email: " . $e->getMessage());
+        }
+    }
+
+
+    /*
+    * 
+    *THIS FUNCTION CHECK IF THE USER EXISTS BY HIS ID IN THE DATABASE AND RETURN THE USER
+    *
+    */
+
+    public function getUserByID($id) {
+        try {
+
+            //CREATE STATEMENT
+            $query = "SELECT * FROM `utilisateurs` WHERE `id` = :id";
+
+            //PREPARE CONNECTION
+            $statement = $this->db->prepare($query);
+
+            $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+            //WE EXECUTE THE STATEMENT
+            $statement->execute();
+
+            //WE CHECK IF THE EMAIL EXIST
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if(!empty($user)){
+                return $user;
+            }else{
+                return false;
+            }
+
+        } catch (PDOException $e) {
+            echo json_encode("Error to check if the user exist in the database by his id: " . $e->getMessage());
         }
     }
 

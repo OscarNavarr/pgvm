@@ -37,7 +37,7 @@
                 <a href="mailto:<?= $employee["email"] ?>"><?= $employee["email"] ?></a>
               </td>
               <td>
-                <a href="<?php echo updateUrlParameters($url, ['action' => 'detail', 'id' => $employee['id']]) ?>" class="bg-[#00aaff] hover:cursor-pointer text-white text-center py-2  px-3 rounded-md w-[5rem] min-h-[2rem] mx-2">Détail</a>
+                <a href="<?php echo updateUrlParameters($url, ['action' => 'detail', 'id' => $employee['id'], 'option' => "rv-passes"]) ?>" class="bg-[#00aaff] hover:cursor-pointer text-white text-center py-2  px-3 rounded-md w-[5rem] min-h-[2rem] mx-2">Détail</a>
               </td>
             </tr>
         <?php endforeach; ?>
