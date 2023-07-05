@@ -11,7 +11,10 @@
 
   //GET ALL USER IN THE DATABASE
   $all_employees = $user->getAlltEmployees();
-
+  
+  //IMPORT updateUrlParemeter FUNCTION FROM HELPERS FOLDER
+  include_once "../helpers/update_url.php";  
+  
   if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"):
 ?>
 <div class="md:flex md:justify-center my-[3rem] mb-[3rem] w-[20rem] min-h-[8rem] md:w-auto overflow-x-auto mx-auto">
@@ -34,7 +37,7 @@
                 <a href="mailto:<?= $employee["email"] ?>"><?= $employee["email"] ?></a>
               </td>
               <td>
-                <button class="bg-[#00aaff] text-white rounded-md w-[5rem] h-[2rem] mx-2">Détail</button>
+                <a href="<?php echo updateUrlParameters($url, ['action' => 'detail', 'id' => $employee['id']]) ?>" class="bg-[#00aaff] hover:cursor-pointer text-white text-center py-2  px-3 rounded-md w-[5rem] min-h-[2rem] mx-2">Détail</a>
               </td>
             </tr>
         <?php endforeach; ?>

@@ -77,7 +77,7 @@ if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "res
                 <p class="text-center text-slate-300 text-[2rem]"><?= sizeof($olds_appointments) ?></p>
             </div>
             <div id="footer" class="w-full flex justify-center ">
-                <a href="<?php echo($action === "old-rendez-vous") ? $url : updateUrlParameter($url, 'action', 'old-rendez-vous')?>"  class="bg-[#00aaff] hover:border-white hover:border-[0.1rem] text-white w-[8rem] h-[2.5rem]  rounded-lg text-center py-2">Regarder</a>
+                <a href="<?php echo($action === "old-rendez-vous") ? $url : updateUrlParameters($url, ['action' => 'old-rendez-vous'] )?>"  class="bg-[#00aaff] hover:border-white hover:border-[0.1rem] text-white w-[8rem] h-[2.5rem]  rounded-lg text-center py-2">Regarder</a>
             </div>
         </div>
        
@@ -88,7 +88,7 @@ if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "res
                 <p class="text-center text-slate-300 text-[2rem]"><?= sizeof($future_appointments) ?></p>
             </div>
             <div id="footer" class="w-full flex justify-center ">
-                <a href="<?php echo($action === "future-rendez-vous") ? $url : updateUrlParameter($url, 'action', 'future-rendez-vous')?>" class="bg-[#00aaff] hover:border-white hover:border-[0.1rem] text-white w-[8rem] h-[2.5rem]  rounded-lg text-center py-2">Regarder</a>
+                <a href="<?php echo($action === "future-rendez-vous") ? $url : updateUrlParameters($url, ['action' => 'future-rendez-vous'])?>" class="bg-[#00aaff] hover:border-white hover:border-[0.1rem] text-white w-[8rem] h-[2.5rem]  rounded-lg text-center py-2">Regarder</a>
             </div>
         </div>
 
