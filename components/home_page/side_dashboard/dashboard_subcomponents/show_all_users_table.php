@@ -11,12 +11,16 @@
 
   //GET ALL USER IN THE DATABASE
   $all_employees = $user->getAlltEmployees();
+
+  //GET THE NUMBER OF TIMES WE HAVE TO CLICK THE PREVIEW AND NEXT BUTTONS
+  $click_times = intval(sizeof($all_employees) / 10);
   
   //IMPORT updateUrlParemeter FUNCTION FROM HELPERS FOLDER
   include_once "../helpers/update_url.php";  
   
   if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"):
 ?>
+
 <div class="md:flex md:justify-center my-[3rem] mb-[3rem] w-[20rem] min-h-[8rem] md:w-auto overflow-x-auto mx-auto">
     <input type="hidden" id="save_info" value="">
     <table class="table-auto border-slate-300 border-[0.15rem] rounded-md ">
@@ -43,7 +47,19 @@
         <?php endforeach; ?>
       </tbody>
     </table>
+    
+</div>
+<div class="flex justify-center mb-3">
+
+  <button class="bg-[#00aaff] text-white w-[7rem] h-[3rem]">Preview</button>
+  
+  <div class="flex justify-center px-5">
+    <?php for($i = 1; $i <= $click_times; $i++ ): ?>
+      <samp class="py-2 text-[1.2rem] text-slate-400"><?= $i?>|</samp>
+    <?php endfor; ?>
+  </div>
+  
+  <button class="bg-[#00aaff] text-white w-[7rem] h-[3rem]">Next</button>
 
 </div>
-
 <?php endif; ?>

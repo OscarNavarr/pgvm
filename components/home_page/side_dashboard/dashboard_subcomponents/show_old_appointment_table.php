@@ -27,10 +27,10 @@ include_once "../connection/db_connect.php";
     
     <table class="table-auto border-slate-300 border-[0.15rem] rounded-md ">
       <thead class="border-slate-300 border-[0.15rem] rounded-md h-[3rem] bg-[#89D8FF]">
-        <tr>
-          <th class="border-r-slate-300 border-r-[0.15rem]">Nom</th>
-          <th class="border-r-slate-300 border-r-[0.15rem]">Prenom</th>
-          <th class="border-r-slate-300 border-r-[0.15rem]">Email</th>
+        <tr> 
+          <th class="border-r-slate-300 border-r-[0.15rem] px-4">Nom</th>
+          <th class="border-r-slate-300 border-r-[0.15rem] px-4">Prenom</th>
+          <th class="border-r-slate-300 border-r-[0.15rem] px-4">Email</th>
           <th class="border-r-slate-300 border-r-[0.15rem] px-4">Appointment_date</th>
           <th class="border-r-slate-300 border-r-[0.15rem] px-4">Appointment_hour</th>
         </tr>
