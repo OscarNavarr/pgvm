@@ -1,6 +1,8 @@
 <?php
 
 header('Content-Type: application/json');
+
+
 //IMPORT THE Exception FILE FROM INCLUDES FOLDER
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -18,6 +20,18 @@ if(isset($_POST)){
     //IMPORT THE SMTP FILE FROM INCLUDES FOLDER
     require_once "../includes/SMTP.php";
 
+    //IMPORT THE USER CLASS
+    require_once "../class/user.php";
+
+    //IMPORT THE CONECTION TO DATABASE
+    require_once "../connection/db_connect.php";
+
+    //CREATE NEW INSTANCE OF USER CLASS 
+    $user= new User($db);
+
+    $employe = $user->getUserByEmail($_POST["email"]);
+    $responsable= $user->getResponsable();
+
     //CREATE NEW INSTANCE OF PHPMailer CLASS
     $mail = new PHPMailer(true);
 
@@ -33,15 +47,15 @@ if(isset($_POST)){
 
         //Recipients
         $mail->setFrom('farruleskendokaponi@gmail.com', 'PGVM');
-        $mail->addAddress($_POST["email"], '');     //Add a recipient
+        $mail->addAddress($responsable["email"], '');     //Add a recipient
         $mail->addReplyTo('farruleskendokaponi@gmail.com', 'PGVM');
 
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Nouveau rendez-vous médical';
-        $mail->Body    = 'Un nouveau rendez-vous médical a été créé pour vous le <b>' . $_POST["date"] . '</b> à <b>' . $_POST["time"] . '</b>';
-        $mail->AltBody = 'Un nouveau rendez-vous médical a été créé pour vous le ' . $_POST["date"] . ' à ' . $_POST["time"] . '';
+        $mail->Subject = 'Nouveau rendez-vous médical créé pour votre employé';
+        $mail->Body    = 'Un nouveau rendez-vous médical a été créé pour '.$employe["prenom"].' '.$employe["nom"].' le <b>' . $_POST["date"] . '</b> à <b>' . $_POST["time"] . '</b>';
+        $mail->AltBody = 'Un nouveau rendez-vous médical a été créé pour '.$employe["prenom"].' '.$employe["nom"].' le ' . $_POST["date"] . ' à ' . $_POST["time"] . '';
 
         $mail->send();
 

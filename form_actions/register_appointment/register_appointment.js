@@ -22,13 +22,46 @@ const send_register_appointment_form = async () => {
          */
 
         if(data.includes("Le nouveau rendez-vous a été ajouté avec succès")){
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: data,
-                showConfirmButton: false,
-                timer: 1500
+            
+            //WE WILL SEND THE EMAIL TO EMPLOYEE AND RESPONSABLE
+            const email_employe = await fetch("../helpers/send_email_to_employe.php", {
+                method: "POST",
+                body: datos
             });
+            const email_responsable = await fetch("../helpers/send_email_to_responsable.php", {
+                method: "POST",
+                body: datos
+            });
+
+            const resp_email_employe =await email_employe.json();
+            const resp_email_responsable =await email_responsable.json();
+
+            console.log(resp_email_employe); //ok = "Message has been sent"
+            console.log(resp_email_responsable); //ok = "Message has been sent"
+
+            if(resp_email_employe.includes("Message has been sent") && resp_email_responsable.includes("Message has been sent")){
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: "Excellent",
+                    text: 'Le nouveau rendez-vous a été ajouté avec succès and the messages have been sent',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }else{
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: "Oopss!",
+                    text: "L'e-mail n'a pas pu être envoyé correctement, l'e-mail de l'employé peut être incorrect ou il n'y a toujours pas de responsable",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                return null;
+            }
+
+            
         };
 
         /**

@@ -75,6 +75,35 @@ class User {
 
     /*
     * 
+    *THIS FUNCTION ALLOW GET RESPONSABLE FROM THE DATABASE
+    *
+    */
+
+
+    public function getResponsable() {
+        try {
+
+            // Preparar la consulta SQL para insertar un nuevo usuario
+            $query = "SELECT * FROM `utilisateurs` WHERE `poste` = 'responsable'";
+            
+            $statement = $this->db->prepare($query);
+
+            // Ejecutar la query
+            $statement->execute();
+            
+            //WE CHECK IF THE EMAIL EXIST
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+            return $user;
+            
+        } catch (PDOException $e) {
+            echo json_encode("Error to get responsable: " . $e->getMessage());
+        }
+    }
+
+
+    /*
+    * 
     *THIS FUNCTION CHECK IF THE USER EXISTS BY HIS EMAIL IN THE DATABASE AND RETURN THE USER
     *
     */

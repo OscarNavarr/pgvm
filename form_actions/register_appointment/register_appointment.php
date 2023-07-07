@@ -49,13 +49,6 @@ if (!empty($_POST)){
                     die(json_encode("Le champ pour insérer l'heure est vide, vous devez le remplir"));
                 }else{
                     $create_medical_appointment->create_medical_appointment($_POST["date"],$_POST["time"], $user_exist["id"]);
-
-                    //WE SEND A EMAIL
-                    try {
-                       require_once "../../helpers/send_email_to_employe.php";
-                    } catch (Exception $e) {
-                        echo json_encode("Error: " . $e->getMessage());
-                    }
                     
                 }
             }
