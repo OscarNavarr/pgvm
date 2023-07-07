@@ -23,8 +23,27 @@ if(!empty($_POST)){
             //WE CHECK IF THE FORM IS OK
             if($validator->is_form_valid()){
                 
-                $create_user->insertUser($_POST["nom"], $_POST["prenom"], $_POST["password"], $_POST["email"], $_POST["poste"]);
-            
+                if($_POST["poste"] === "employé"){
+
+                    $create_user->insertUser($_POST["nom"], $_POST["prenom"], $_POST["password"], $_POST["email"], $_POST["poste"]);
+
+                }else if($_POST["poste"] === "admin"){
+                    $user_exist = $create_user->getUserByPoste("admin");
+
+                    if(empty($user_exist) || $user_exist == null){
+                        $create_user->insertUser($_POST["nom"], $_POST["prenom"], $_POST["password"], $_POST["email"], $_POST["poste"]);
+                    }else{
+                        die(json_encode("Il y a déjà un administrateur enregistré dans la base de données"));
+                    }
+                }else if($_POST["poste"] === "responsable"){
+                    $user_exist = $create_user->getUserByPoste("responsable");
+
+                    if(empty($user_exist) || $user_exist == null){
+                        $create_user->insertUser($_POST["nom"], $_POST["prenom"], $_POST["password"], $_POST["email"], $_POST["poste"]);
+                    }else{
+                        die(json_encode("Il y a déjà un responsable enregistré dans la base de données"));
+                    }
+                }
             }else{
 
                 //IF THE FORM IS NOT OK THEN WE SHOW THE ERRORS 

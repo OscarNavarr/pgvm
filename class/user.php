@@ -72,21 +72,22 @@ class User {
         }
     }
 
-
+    
     /*
     * 
-    *THIS FUNCTION ALLOW GET RESPONSABLE FROM THE DATABASE
+    *THIS FUNCTION ALLOW GET THE USER BY HIS POSTE FROM THE DATABASE
     *
     */
-
-
-    public function getResponsable() {
+    public function getUserByPoste($poste) {
         try {
 
             // Preparar la consulta SQL para insertar un nuevo usuario
-            $query = "SELECT * FROM `utilisateurs` WHERE `poste` = 'responsable'";
+            $query = "SELECT * FROM `utilisateurs` WHERE `poste` = :poste";
             
             $statement = $this->db->prepare($query);
+
+            // ASSIGN VALUES TO PARAMETERS
+            $statement->bindParam(':poste', $poste, PDO::PARAM_STR);
 
             // Ejecutar la query
             $statement->execute();

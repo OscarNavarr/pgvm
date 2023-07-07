@@ -30,7 +30,7 @@ if(isset($_POST)){
     $user= new User($db);
 
     $employe = $user->getUserByEmail($_POST["email"]);
-    $responsable= $user->getResponsable();
+    $responsable= $user->getUserByPoste("responsable");
 
     //CREATE NEW INSTANCE OF PHPMailer CLASS
     $mail = new PHPMailer(true);

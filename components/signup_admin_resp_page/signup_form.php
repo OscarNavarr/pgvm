@@ -45,7 +45,11 @@
                 <option value="responsable">Responsable</option>
             </select>
         </div>
-        
+        <div class="w-[90%] md:w-full min-h-[4rem] hidden rounded-xl bg-red-300 mt-3 text-center" id="poste_error_id">
+            <p class="p-2" id="poste_error_text" class="text-center">Error</p>
+        </div>
+
+
         <!-- PASSWORD FIELDS -->
         <div class="md:flex md:justify-between mt-8">
             <label for="password" class="pt-5">Mot de Pass:</label>

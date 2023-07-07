@@ -23,7 +23,7 @@ const sendForm = async () => {
 
   try {
     // Array of fields to check for errors
-    const errorFields = ["nom", "prenom", "email", "password"];
+    const errorFields = ["nom", "prenom", "email","password"];
 
     // Get the form and form data
     const formulario = document.getElementById("register_user_form");
@@ -65,6 +65,14 @@ const sendForm = async () => {
           errorElement.classList.add("hidden");
         
       });
+      const errorElementId = 'poste_error_id';
+      const errorElementText = 'poste_error_text';
+      const errorElement = document.getElementById(errorElementId);
+
+    
+        
+        hideErrorMessage(errorElementText);
+        errorElement.classList.add("hidden");
       return null;
     }
 
@@ -96,6 +104,35 @@ const sendForm = async () => {
 
       
     }
+    
+    
+    /*
+    *
+    * IF THE ADMIN OR RESPONSABLE POSTE EXIST 
+    *   
+    */
+
+    if (data.includes("Il y a déjà un administrateur enregistré") || data.includes("Il y a déjà un responsable enregistré")) {
+
+      document.getElementById("poste_error_id").classList.remove("hidden");
+      document.getElementById("poste_error_text").innerHTML = data;
+
+      // Loop through each field and hide error messages
+      errorFields.forEach((field) => {
+        if (field !== "poste") {
+          
+          const errorElementId = `${field}_error_id`;
+          const errorElementText = `${field}_error_text`;
+          const errorElement = document.getElementById(errorElementId);
+
+          hideErrorMessage(errorElementText);
+          errorElement.classList.add("hidden");
+
+        } 
+      });
+
+      
+    }
 
     /**
      * 
@@ -107,6 +144,7 @@ const sendForm = async () => {
       
       // Loop through each field and show/hide the corresponding error message
       errorFields.forEach((field, index) => {
+
         const errorElementId = `${field}_error_id`;
         const errorElementText = `${field}_error_text`;
         const errorElement = document.getElementById(errorElementId);
@@ -117,7 +155,7 @@ const sendForm = async () => {
         } else {
           errorElement.classList.add("hidden");
         }
-
+        
       });
     };
   } catch (e) {
