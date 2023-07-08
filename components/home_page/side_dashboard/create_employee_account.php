@@ -40,7 +40,11 @@
     <div class="w-[90%] md:w-full min-h-[4rem] hidden rounded-xl bg-red-300 mt-3" id="password_error_id">
         <p class="p-2" id="password_error_text">Error</p>
     </div>
+
     <input type="hidden" name="poste" value="employé">
+    <div class="w-[90%] md:w-full min-h-[4rem] hidden rounded-xl bg-red-300 mt-3" id="poste_error_id">
+        <p class="p-2" id="poste_error_text">Error</p>
+    </div>
 
     <div class="flex justify-center mt-5">
         <button type="button" onclick="sendForm()" class="bg-blue-300 hover:bg-blue-400 h-[3rem] w-[10rem] rounded-lg text-white">

@@ -16,6 +16,7 @@
   include_once "../helpers/update_url.php";  
   
   if($_SESSION["user"]["poste"] === "admin" || $_SESSION["user"]["poste"] === "responsable"):
+    if(!empty($all_employees)):
 ?>
 
 <div class="md:flex md:justify-center my-[3rem] mb-[3rem] w-[20rem] min-h-[8rem] md:w-auto overflow-x-auto mx-auto">
@@ -46,4 +47,5 @@
     </table>
     
 </div>
+  <?php endif; ?>
 <?php endif; ?>

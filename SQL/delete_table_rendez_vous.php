@@ -8,12 +8,12 @@ try {
 
     if ($db) {
         // Define the query to delete the table
-        $query = "DROP TABLE `utilisateurs`";
+        $query = "DROP TABLE `rendez_vous`";
 
         // Execute the query to delete the table
         $db->exec($query);
 
-        echo "Le tableau 'utilisateurs' a été supprimé avec succès.";
+        echo "Le tableau 'rendez-vous' a été supprimé avec succès.";
 
         // Close the connection
         $db = null;
