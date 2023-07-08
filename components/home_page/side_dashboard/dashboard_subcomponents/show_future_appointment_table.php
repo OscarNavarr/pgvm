@@ -48,7 +48,7 @@ $server_date = date("Y-m-d");
       <tbody>
         <?php foreach($future_appointments as $future_appointment): ?>
             <tr class="border-slate-300 border-[0.15rem] h-[3rem]" >
-              <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?= $future_appointment["nom"] ?></p></td>
+              <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?=strtoupper($future_appointment["nom"])?></p></td>
               <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?= $future_appointment["prenom"] ?></p></td>
               <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center">
                 <a href="mailto:<?= $future_appointment["email"] ?>"><?= $future_appointment["email"] ?></a>

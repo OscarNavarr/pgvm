@@ -7,7 +7,7 @@
 <div class="w-full h-screen flex justify-center items-center">
     <div class="w-[80%]">
 
-        <h1 class="font-bold text-center text-[1.2rem]">Connectez-vous pour accéder au Dashboard</h1>
+        <h1 class="text-center text-[2.3rem] text-slate-400">Connectez-vous pour accéder au Dashboard</h1>
         
         <hr/>
 

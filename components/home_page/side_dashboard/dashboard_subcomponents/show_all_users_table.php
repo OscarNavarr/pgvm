@@ -32,7 +32,7 @@
       <tbody>
         <?php foreach($all_employees as $employee): ?>
             <tr class="border-slate-300 border-[0.15rem] h-[3rem]" >
-              <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?= $employee["nom"] ?></p></td>
+              <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?=strtoupper($employee["nom"]) ?></p></td>
               <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center"><p><?= $employee["prenom"] ?></p></td>
               <td class="border-r-slate-300 border-r-[0.15rem] px-2 text-center">
                 <a href="mailto:<?= $employee["email"] ?>"><?= $employee["email"] ?></a>

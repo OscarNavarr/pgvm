@@ -28,7 +28,7 @@
     </div>
 
     <div class="flex justify-center">
-        <button type="button" onclick="sendSigninForm()" class="bg-black  text-white h-[2.5rem] w-[6rem] mt-10">Login</button>
+        <button type="button" onclick="sendSigninForm()" class="bg-blue-300 hover:bg-blue-400 rounded-lg text-white h-[2.5rem] w-[6rem] mt-10">Login</button>
     </div>
 </form>
 <script type="text/javascript" src="../form_actions/signin_user/signin_user.js"></script>
