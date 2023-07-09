@@ -25,8 +25,7 @@
             <br>
             <input class="border-b-black border-b-[0.1rem] w-[90%] md:w-full md:max-w-[15rem] h-[2.5rem] outline-0   px-2 mt-2" type="email" name="email" id="email" required placeholder="addresse@gmail.com">
         </div>
-
-        <!--EMAIL ERRROR SECTION -->
+        
         <div class="w-[90%] md:w-full min-h-[4rem] hidden rounded-xl bg-red-300 mt-3" id="email_error_id">
             <p class="p-2" id="email_error_text">Error</p>
         </div>
