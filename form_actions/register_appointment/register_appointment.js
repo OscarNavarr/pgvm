@@ -2,6 +2,12 @@ const send_register_appointment_form = async () => {
 
     try {
 
+        //GET THE BUTTON REFERENCE BY HIS ID 
+        const button = document.getElementById("btn_appointment");
+        
+        //DISABLE THE BUTTON
+        button.disabled = true;
+
         // Get the form and form data
         const formulario = document.getElementById("register_appointment_form");
         const datos = new FormData(formulario);
@@ -36,15 +42,18 @@ const send_register_appointment_form = async () => {
             const resp_email_employe =await email_employe.json();
             const resp_email_responsable =await email_responsable.json();
 
-            if(resp_email_employe.includes("Message has been sent") && resp_email_responsable.includes("Message has been sent")){
+            if(resp_email_employe.includes("Le message a été envoyé") && resp_email_responsable.includes("Le message a été envoyé")){
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
                     title: "Excellent",
-                    text: 'Le nouveau rendez-vous a été ajouté avec succès and the messages have been sent',
+                    text: 'Le nouveau rendez-vous a été ajouté avec succès et le message a été envoyé',
                     showConfirmButton: false,
                     timer: 5000
+                    
                 });
+                //TURN FALSE THE DISABLE BUTTON PROPERTY 
+                button.disabled = false;
             }else{
                 Swal.fire({
                     position: 'center',
@@ -54,6 +63,9 @@ const send_register_appointment_form = async () => {
                     showConfirmButton: false,
                     timer: 5000
                 });
+
+                //TURN FALSE THE DISABLE BUTTON PROPERTY 
+                button.disabled = false;
 
                 return null;
             }
@@ -75,6 +87,9 @@ const send_register_appointment_form = async () => {
                 document.getElementById("email_error_id").classList.add("hidden");
                 document.getElementById("email_error_text").innerHTML = "";
             }); 
+
+            //TURN FALSE THE DISABLE BUTTON PROPERTY 
+            button.disabled = false;
         }
 
         /**
@@ -91,11 +106,38 @@ const send_register_appointment_form = async () => {
                 document.getElementById("hour_error_id").classList.add("hidden");
                 document.getElementById("hour_error_text").innerHTML = "";
             });
+            
+            //TURN FALSE THE DISABLE BUTTON PROPERTY 
+            button.disabled = false;
+        }
+
+        /**
+         * 
+         * IF MEDICAL APPOINTMENT EXISTS 
+         * 
+         */
+        
+        if(data.includes("le même jour et à la même heure") ){
+            
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: "Oopss!",
+                text: "Vous avez déjà créé un rendez-vous médical pour cet employé le même jour et à la même heure",
+                showConfirmButton: false,
+                timer: 5000
+            });
+
+            //TURN FALSE THE DISABLE BUTTON PROPERTY 
+            button.disabled = false;
         }
 
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
+
+        //TURN FALSE THE DISABLE BUTTON PROPERTY 
+        button.disabled = false;
     }
 
 }

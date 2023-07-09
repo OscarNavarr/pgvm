@@ -48,7 +48,14 @@ if (!empty($_POST)){
                 if(empty($_POST["time"])){
                     die(json_encode("Le champ pour insérer l'heure est vide, vous devez le remplir"));
                 }else{
-                    $create_medical_appointment->create_medical_appointment($_POST["date"],$_POST["time"], $user_exist["id"]);
+                    //CHECK IF THE MEDICAL APPOINTMENT EXIST 
+                    $exist_appointment = $create_medical_appointment->get_all_medical_appointment_by_date_time_user_id($_POST["date"],$_POST["time"], $user_exist["id"]);
+
+                    if(!$exist_appointment){
+                        $create_medical_appointment->create_medical_appointment($_POST["date"],$_POST["time"], $user_exist["id"]);
+                    }else{
+                        die(json_encode("Vous avez déjà créé un rendez-vous médical pour cet employé le même jour et à la même heure"));
+                    }
                     
                 }
             }

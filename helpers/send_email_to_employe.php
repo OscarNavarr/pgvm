@@ -45,7 +45,7 @@ if(isset($_POST)){
 
         $mail->send();
 
-        echo json_encode("Message has been sent");
+        echo json_encode("Le message a été envoyé");
 
     } catch (Exception $e) {
         die( json_encode("Error: " . $e->getMessage()));

@@ -45,6 +45,45 @@ class Medical_Appointment {
     }
     
     
+    
+    /*
+    * 
+    *THIS FUNCTION ALLOW TO GET ALL MEDICAL APPOINTMENT FROM THE DATABASE BY APPOINTMENT DATE, APPOINTMENT HOUR AND USER ID 
+    *
+    */
+
+    public function get_all_medical_appointment_by_date_time_user_id($appointment_date, $appointment_hour, $user_id ){
+        try{
+            //CREATE THE SQL QUERY TO ADD A NEW MEDICAL APPOINTMENT
+            $query = "SELECT * FROM `rendez_vous` WHERE `appointment_date` = :appointment_date AND appointment_hour = :appointment_hour AND user_id = :user_id";
+
+            $statement = $this->db->prepare($query);
+
+            // ASSIGN VALUES TO PARAMETERS
+            $statement->bindParam(':appointment_date', $appointment_date);
+            $statement->bindParam(':appointment_hour', $appointment_hour);
+            $statement->bindParam(':user_id', $user_id);
+
+
+            //EXECUTE THE QUERY
+            $statement->execute();
+
+            //FETCH ALL DATA
+            $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            
+            if(!empty($appointments)){
+                return $appointments;
+            }else{
+                return false;
+            }
+
+        } catch (PDOException $e){
+            echo json_encode("Erreur lors de l'obtention des rendez-vous médicaux: ".$e->getMessage());
+        }
+    }
+
+
     /*
     * 
     *THIS FUNCTION ALLOW TO GET ALL THE OLD MEDICAL APPOINTMENT FROM THE DATABASE
@@ -75,7 +114,6 @@ class Medical_Appointment {
             echo json_encode("Erreur lors de l'obtention des rendez-vous médicaux: ".$e->getMessage());
         }
     }
-
 
     /*
     * 

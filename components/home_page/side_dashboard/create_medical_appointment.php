@@ -50,7 +50,7 @@
         </div>
         
         <div class="flex justify-center mt-8">
-            <button type="button" onclick="send_register_appointment_form()" class="bg-blue-300 hover:bg-blue-400 h-[3rem] w-[11rem] rounded-lg text-white">
+            <button type="button" onclick="send_register_appointment_form()"  id="btn_appointment" class="bg-blue-300 hover:bg-blue-400 h-[3rem] w-[11rem] rounded-lg text-white">
                 Créer un rendez-vous
             </button>
         </div>
